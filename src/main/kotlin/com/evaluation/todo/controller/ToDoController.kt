@@ -45,6 +45,14 @@ class ToDoController(@Autowired private val toDoService: ToDoService) {
     }
 
     /**
+     * Update task status
+     */
+    @PutMapping("/status/update")
+    fun updateTaskStatus(@RequestParam id: Long): ResResult<Task> {
+        return ResResult.ok(toDoService.updateTaskStatus(id))
+    }
+
+    /**
      * Update task priority
      */
     @PutMapping("/weight")

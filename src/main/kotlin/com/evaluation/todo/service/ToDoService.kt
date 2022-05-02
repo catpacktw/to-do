@@ -20,7 +20,7 @@ class ToDoService(@Autowired private val taskDao: TaskDao) {
      * 查詢
      */
     fun getTasksByStatus(status: Int?): List<Task>? {
-        return status?.takeIf { true }?.let { taskDao.findByStatus(status) } ?: return taskDao.findAll()
+        return status?.takeIf { true }?.let { taskDao.findByStatusOrderByWeightDesc(status) } ?: return taskDao.findAllByOrderByWeightDesc()
     }
 
     /**
@@ -33,6 +33,14 @@ class ToDoService(@Autowired private val taskDao: TaskDao) {
         result.takeIf { true }?.let {
             return result
         } ?: throw ToDoException.of("Adding task failed")
+    }
+
+    /**
+     * 修改狀態
+     */
+    fun updateTaskStatus(id: Long): Task {
+        val target = taskDao.findById(id).get()
+        return taskDao.save(target.apply { this.status = this.status xor 1 })
     }
 
     /**
