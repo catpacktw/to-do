@@ -15,3 +15,5 @@
     );
 
 #### 2. Change datasource properties in application.properties file
+
+### Swagger UI: http://localhost:8080/swagger-ui.html
