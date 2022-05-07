@@ -16,6 +16,7 @@
     <properties>
         <java.version>11</java.version>
         <kotlin.version>1.6.21</kotlin.version>
+        <arrow.version>1.1.2</arrow.version>
         <spring-cloud.version>2021.0.2</spring-cloud.version>
     </properties>
     <dependencies>
@@ -63,6 +64,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- Arrow-Kt -->
+        <dependency>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-core</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
         <!-- OpenAPI -->
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -91,6 +98,13 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.arrow-kt</groupId>
+                <artifactId>arrow-stack</artifactId>
+                <version>${arrow.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

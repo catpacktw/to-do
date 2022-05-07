@@ -10,5 +10,5 @@ import com.evaluation.todo.model.Priority
  */
 class UpdateWeightDTO {
     val id: Long = 0L
-    val operation: Priority = Priority.INCREASE
+    val priority: Priority = Priority.MEDIUM
 }

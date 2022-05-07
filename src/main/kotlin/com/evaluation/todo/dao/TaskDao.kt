@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository
 @Repository
 interface TaskDao : JpaRepository<Task, Long> {
 
-    fun findAllByOrderByWeightDesc(): List<Task>?
+    fun findAllByOrderByWeightDescIdDesc(): List<Task>?
 
-    fun findByStatusOrderByWeightDesc(status: Int?): List<Task>?
+    fun findByStatusOrderByWeightDescIdDesc(status: Int?): List<Task>?
 
     fun findTopByOrderByWeightDesc(): Task?
 

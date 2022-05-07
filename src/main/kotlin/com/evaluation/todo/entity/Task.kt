@@ -8,6 +8,7 @@ import javax.persistence.*
 import javax.validation.constraints.Min
 
 /**
+ * task entity
  *
  * @author HY Lin
  */

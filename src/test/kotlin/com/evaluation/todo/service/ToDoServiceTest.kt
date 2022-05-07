@@ -41,7 +41,7 @@ internal class ToDoServiceTest @Autowired constructor(val toDoService: ToDoServi
     @Test
     fun updateTask() {
         val before = Task(task.id, "launch", "chicken, fries", 1, 0)
-        val after = toDoService.updateTask(before)
+        val after = toDoService.updateTaskContent(before)
         assertEquals(before.id, after.id)
         assertEquals(before.content, after.content)
     }

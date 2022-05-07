@@ -45,6 +45,10 @@ class ResResult<T> {
             return failed(1, "failed")
         }
 
+        fun <T> failed(error: ErrorCode): ResResult<T> {
+            return failed(error.code, error.desc)
+        }
+
         fun <T> failed(code: Int, msg: String): ResResult<T> {
             val result = ResResult<T>()
             result.code = code
