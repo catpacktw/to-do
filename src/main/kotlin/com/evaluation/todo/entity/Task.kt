@@ -24,7 +24,7 @@ class Task (
     var content: String = "",
     @Schema(description = "0-Pending, 1-Done") @Range(min = 0, max = 1)
     var status: Int = 0,
-    @Schema(description = "Priority") @Min(0)
+    @Schema(description = "Priority") @Range(min = 0, max = 3)
     var weight: Int = 0
 ) {
     override fun toString(): String {
