@@ -1,13 +1,13 @@
 package com.evaluation.todo.service
 
+import arrow.core.Either
 import com.evaluation.todo.dao.TaskDao
 import com.evaluation.todo.entity.Task
 import com.evaluation.todo.model.Priority
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Test
-
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -41,16 +41,19 @@ internal class ToDoServiceTest @Autowired constructor(val toDoService: ToDoServi
     @Test
     fun updateTask() {
         val before = Task(task.id, "launch", "chicken, fries", 1, 0)
-        val after = toDoService.updateTaskContent(before)
-        assertEquals(before.id, after.id)
-        assertEquals(before.content, after.content)
+        when (val after = toDoService.updateTaskContent(before)) {
+            is Either.Right -> assertEquals(before.id, after.value.id)
+            is Either.Left -> assertTrue(false)
+        }
     }
 
     @Test
     fun updateWeight() {
         val before = taskDao.findById(task.id).get()
-        val after = toDoService.updateWeight(task.id, Priority.REDUCE)
-        assertTrue(after.weight <= before.weight)
+        when (val after = toDoService.updateWeight(task.id, Priority.URGENT)) {
+            is Either.Right -> assertTrue(after.value.weight <= before.weight)
+            is Either.Left -> assertTrue(false)
+        }
     }
 
 }
