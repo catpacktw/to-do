@@ -6,6 +6,7 @@ import com.evaluation.todo.entity.Task
 import com.evaluation.todo.model.EditGroup
 import com.evaluation.todo.model.ResResult
 import com.evaluation.todo.service.ToDoService
+import com.evaluation.todo.vo.TaskVO
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -30,7 +31,7 @@ class ToDoController(@Autowired private val toDoService: ToDoService) {
     @GetMapping("/index")
     @Operation(summary = "Query todo list", description = "Main query API for displaying index page")
     fun getTasksByStatus(@Parameter(description = "Task status: 0-Pending, 1-Done") @RequestParam(required = false) status: Int?)
-            : ResResult<List<Task>?> = ResResult.ok(toDoService.getTasksByStatus(status))
+            : ResResult<List<TaskVO>?> = ResResult.ok(toDoService.getTasksByStatus(status))
 
 
     /**

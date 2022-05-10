@@ -7,6 +7,8 @@ import com.evaluation.todo.entity.Task
 import com.evaluation.todo.model.ErrorCode
 import com.evaluation.todo.model.Priority
 import com.evaluation.todo.repository.TaskRepository
+import com.evaluation.todo.util.BeanUtils
+import com.evaluation.todo.vo.TaskVO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -24,9 +26,10 @@ class ToDoService(
     /**
      * 查詢
      */
-    fun getTasksByStatus(status: Int?): List<Task>? {
-        return status?.let { taskDao.findByStatusOrderByWeightDescIdDesc(status) }
-            ?: return taskDao.findAllByOrderByWeightDescIdDesc()
+    fun getTasksByStatus(status: Int?): List<TaskVO>? {
+        val taskList = status?.let { taskDao.findByStatusOrderByWeightDescIdDesc(status) }
+            ?: taskDao.findAllByOrderByWeightDescIdDesc()
+        return BeanUtils.copyListProperties(taskList) { TaskVO() }
     }
 
     /**
