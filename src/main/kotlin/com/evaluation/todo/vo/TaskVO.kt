@@ -6,7 +6,7 @@ package com.evaluation.todo.vo
  * @author HY Lin
  */
 data class TaskVO(
-    val id: Long = 0L,
+    var id: Long = 0L,
     var title: String = "",
     var content: String = "",
     var status: Int = 0,

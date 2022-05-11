@@ -33,7 +33,7 @@ class TaskRepository(@Autowired private val taskDao: TaskDao) {
     fun deleteTask(id: Long): Either<ErrorCode, Long> {
         return try {
             taskDao.deleteById(id)
-            return Either.Right(id)
+            Either.Right(id)
         } catch (e: EmptyResultDataAccessException) {
             Either.Left(ErrorCode.TASK_NOT_FOUND)
         }
